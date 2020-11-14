@@ -24,26 +24,15 @@ class RestHttpServices {
 
   var _headers={"Content-Type": "application/json"};
 
-  /* Future _fetchToken() async{
-    var prefs = await SharedPrefServices.instance;
-
-    // getting token
-    return prefs.authToken;
-  } */
 
   _fetchToken() async{
     var prefs = await SharedPrefServices.instance;
     String _token = prefs.authToken;
     _headers.addAll({'Authorization': 'Bearer $_token'});
-    // getting token
-    //return prefs.authToken;
   }
 
   // Get:-----------------------------------------------------------------------
   Future fetch(String uri) async {
-
-   /*  _fetchToken().then((token)=> _headers.addAll({'Authorization': 'Bearer $token'}))
-        .catchError((e)=>FLog.error(text: e)); */
     _fetchToken();
 
     return http.get(Endpoints.baseUrl+uri,headers: _headers ).then((http.Response response) {
@@ -59,10 +48,8 @@ class RestHttpServices {
 
   // Post:----------------------------------------------------------------------
   Future post(String uri, dynamic data) async {
-    /* _fetchToken().then((token)=> _headers.addAll({'Authorization': 'Bearer $token'}))
-        .catchError((e)=>FLog.error(text: 'Error when fetching token: '+e));
-    */
     _fetchToken();
+
     FLog.info(text: _headers.toString());
     final response = await http.post(Endpoints.baseUrl+uri,
         headers: _headers,
@@ -81,8 +68,7 @@ class RestHttpServices {
 
 //
   put(String path, String payload, [bool auth = false]) async {
-    _fetchToken().then((token)=> _headers.addAll({'Authorization': 'Bearer $token'}))
-        .catchError((e)=>FLog.error(text: e));
+    _fetchToken();
 
     final response = await http.put(API + path,
         headers: _headers,
@@ -100,8 +86,7 @@ class RestHttpServices {
 
 //
   delete(String path) async {
-    _fetchToken().then((token)=> _headers.addAll({'Authorization': 'Bearer $token'}))
-        .catchError((e)=>FLog.error(text: e));
+    _fetchToken();
 
     final response = await http.delete(API + path,
         headers: _headers);
@@ -110,7 +95,7 @@ class RestHttpServices {
     final int statusCode = response.statusCode;
 
     if (statusCode < 200 || statusCode > 400 || json == null) {
-      throw NetworkException(message:"Error delet data on server", statusCode: statusCode);
+      throw NetworkException(message:"Error delete data on server", statusCode: statusCode);
     }
     return res;
   }
