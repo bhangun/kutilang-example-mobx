@@ -1,59 +1,53 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:f_logs/f_logs.dart';
-import 'package:kutilangExmaple/services/apps_routes.dart';
-import 'package:kutilangExmaple/services/getIt.dart';
-import 'package:kutilangExmaple/services/navigation.dart';
-import 'package:kutilangExmaple/services/shared_preference_services.dart';
-
-import '../../../services/network/dio_rest_services.dart';
+import '../../../services/network/rest_services.dart';
 import '../../../utils/helper.dart';
 import '../models/user_model.dart';
 
 class UserServices {
-  static const API = '/api/';
+  // static const API = '/api/';
 
-  static const API_ACCOUNT = API + 'account';
+  static const API_ACCOUNT = 'account';
 
-  static const PROFILE = API + 'profile';
+  static const PROFILE = 'profile';
 // POST saveAccount
-  static const API_ACCOUNT_SAVE = API + "account";
+  static const API_ACCOUNT_SAVE = "account";
 
 // POST changePassword
-  static const API_ACCOUNT_CHANGE_PASSWORD = API + "account/change-password";
+  static const API_ACCOUNT_CHANGE_PASSWORD = "account/change-password";
 
 //POST finishPasswordReset
-  static const API_ACCOUNT_RESET_FINISH = API + "account/reset-password/finish";
+  static const API_ACCOUNT_RESET_FINISH = "account/reset-password/finish";
 
 // POST requestPasswordReset
-  static const API_ACCOUNT_RESET_INIT = API + "account/reset-password/init";
+  static const API_ACCOUNT_RESET_INIT = "account/reset-password/init";
 
 // GET activateAccount
-  static const API_ACTIVATE = API + "activate";
+  static const API_ACTIVATE = "activate";
 
 // POST registerAccount
-  static const API_REGISTER = API + "register";
+  static const API_REGISTER = "register";
 
 // GET getActiveProfiles
-  static const API_PROFILE_INFO = API + "profile-info";
+  static const API_PROFILE_INFO = "profile-info";
 
 // POST authorize
 //GET isAuthenticated
-  static const API_USERS_AUTHENTICATE = API + "authenticate";
+  static const API_USERS_AUTHENTICATE = "authenticate";
 
 // GET getAuthorities
-  static const API_USERS_AUTHORITIES = API + "users/authorities";
+  static const API_USERS_AUTHORITIES = "users/authorities";
 
 // GET getAllUsers
 // POST createUser
 // PUT updateUser
-  static const API_USERS = API + "users";
+  static const API_USERS = "users";
 
 // GET getUser
 // DELETE deleteUser
-  static const API_USER = API + "users/";
-
+  static const API_USER = "users/";
+/* 
   login(String _username, String _password, [bool _rememberMe = false]) {
     var body = jsonEncode({
       "username": _username,
@@ -61,7 +55,7 @@ class UserServices {
       "rememberMe": _rememberMe
     });
     try {
-      getIt<RestDioServices>()
+      RestServices
           .post(UserServices.API_USERS_AUTHENTICATE, body)
           .then((d) => _saveToken(d.toString()));
       
@@ -74,61 +68,61 @@ class UserServices {
     String _token = json.decode(token)["id_token"];
     FLog.info(text: _token);
     if (_token != null) {
-      getIt<SharedPrefServices>().saveAuthToken(_token);
-      getIt<NavigationServices>().navigateTo(AppsRoutes.home);
+      SharedPrefServices.saveAuthToken(_token);
+      NavigationServices.navigateTo(AppsRoutes.home);
       return true;
     } else
       return false;
-  }
+  } */
 
   Future<User> user(String id) async {
-    var response = await getIt<RestDioServices>().fetch(API_USER + id);
+    var response = await RestServices.fetch(API_USER + id);
     return User.fromJson(json.decode(response));
   }
 
-  Future<List<User>> users([var page, var size, var sort]) async {
-    var data = await getIt<RestDioServices>().fetch(API_USERS);
+  static Future<List<User>> users([var page, var size, var sort]) async {
+    var data = await RestServices.fetch(API_USERS);
     return User.listFromString(data);
   }
 
   //
-  createUser(User user) async {
+  static createUser(User user) async {
     //return await restPost(API_USER, user.toJson().toString(), true);
   }
 
   //
-  updateUser(User user) async {
+  static updateUser(User user) async {
     //return await restPut(API_USER, user.toJson().toString(), true);
   }
 
   //
-  deleteUser(String userid) async {
+  static deleteUser(String userid) async {
     //return await restDelete(API_USER + userid);
   }
 
-  changePassword(String currentPassword, String newPassword) async {
+  static changePassword(String currentPassword, String newPassword) async {
     //var body = '{"currentPassword": "$currentPassword","newPassword": "$newPassword"}';
   }
 
-  authorities() {}
+  static authorities() {}
 
-  activate() async {
+  static activate() async {
     // ?key=
   }
 
-  resetPasswordFinish(String key, String newPassword) async {
+  static resetPasswordFinish(String key, String newPassword) async {
     // var body = '{"key": "$key","newPassword": "$newPassword"}';
   }
 
-  resetPasswordInit(String email) async {}
+  static resetPasswordInit(String email) async {}
 
-  profileInfo() async {
-    var data = await getIt<RestDioServices>().fetch(API_ACCOUNT);
+  static profileInfo() async {
+    var data = await RestServices.fetch(API_ACCOUNT);
     User user = User.fromJson(json.decode(data.toString()));
     return user;
   }
 
-  register() {}
+  static register() {}
 
   List<User> usersData(String data) {
     final parsed = json.decode(data).cast<Map<String, dynamic>>();

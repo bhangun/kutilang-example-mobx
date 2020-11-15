@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:kutilangExmaple/bloc/app/app_bloc.dart';
-import 'package:kutilangExmaple/bloc/authentication/authentication_bloc.dart';
-import 'package:kutilangExmaple/generated/i18n.dart';
-import 'package:kutilangExmaple/utils/preferences.dart';
+import 'package:kutilangExample/bloc/app/app_bloc.dart';
+import 'package:kutilangExample/bloc/authentication/authentication_bloc.dart';
+import 'package:kutilangExample/generated/i18n.dart';
 
-import '../widgets/app_icon_widget.dart';
+import '../utils/config.dart';
 import '../widgets/empty_app_bar_widget.dart';
-import '../widgets/global_methods.dart';
 import '../widgets/progress_indicator_widget.dart';
 import '../widgets/rounded_button_widget.dart';
 import '../widgets/textfield_widget.dart';
@@ -115,7 +113,7 @@ BuildContext _context;
   }
 
    Widget _buildLeftSide() => SizedBox.expand(
-      child: SvgPicture.asset(Preferences.splash_image)
+      child: SvgPicture.asset(IMAGE_SPLASH)
   );
 
 
@@ -129,7 +127,7 @@ BuildContext _context;
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SvgPicture.asset(Preferences.splash_image),
+              SvgPicture.asset(IMAGE_SPLASH),
               SizedBox(height: 24.0),
               _buildUserIdField(),
               _buildPasswordField(),

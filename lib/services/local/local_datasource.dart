@@ -1,4 +1,4 @@
-import 'package:kutilangExmaple/services/local/local_db_constants.dart';
+import 'package:kutilangExample/services/local/local_db_constants.dart';
 import 'package:sembast/sembast.dart';
 import '../../models/app_data.dart';
 import 'local_database.dart';

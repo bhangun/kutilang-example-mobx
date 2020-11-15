@@ -1,8 +1,5 @@
-import 'package:get_it/get_it.dart';
-import 'package:kutilangExmaple/modules/register_modules.dart';
-import 'package:kutilangExmaple/services/getIt.dart';
-// import 'package:kutilangExmaple/utils/providers';
-import 'package:kutilangExmaple/utils/routes.dart';
+import 'package:kutilangExample/modules/register_modules.dart';
+import 'package:kutilangExample/utils/routes.dart';
 
 import 'modules.dart';
 
@@ -14,10 +11,6 @@ class ModulesRegistry {
   factory ModulesRegistry() =>  _singleton;
 
   ModulesRegistry._(){
-   // GetIt.I.registerSingleton(AppModel());
-    getIt.registerSingleton(Modules());
-    getIt.registerSingleton(Routes());
-    // getIt.registerSingleton(AppProviders());
     _registry();
   }
 
@@ -25,11 +18,7 @@ class ModulesRegistry {
     registerModules().forEach((m){
         m.pages().forEach((p){
           p.name = m.name;
-          getIt<Modules>().addPages(p);
-        });
-
-        m.providers().forEach((p){
-        //  getIt<AppProviders>().addProviders(p);
+          Modules.addPages(p);
         });
 
         m.routes();

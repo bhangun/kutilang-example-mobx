@@ -4,10 +4,10 @@
       "directoryPath": "/Users/bhangun/worktura/rkab/e-rkab/backend",
       "packageName": "com.bhangun"
     },
-    "appsName": "kutilangExmaple",
+    "appsName": "kutilangExample",
     "packageName": "com.bhangun",
     "directoryPath": "/Users/bhangun/worktura/rkab/e-rkab/backend",
-    "packageFolder": "/Users/bhangun/workopen/JHipster-Generator/kutilang-example/kutilangExmaple",
+    "packageFolder": "/Users/bhangun/workopen/JHipster-Generator/kutilang-example/kutilangExample",
     "android": "kotlin",
     "ios": "swift",
     "stateManageType": "mobx"

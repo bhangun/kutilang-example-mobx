@@ -3,14 +3,14 @@ import 'package:f_logs/f_logs.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:kutilangExmaple/modules/account/services/user_services.dart';
-import 'package:kutilangExmaple/services/apps_routes.dart';
-import 'package:kutilangExmaple/services/getIt.dart';
-import 'package:kutilangExmaple/services/navigation.dart';
-import 'package:kutilangExmaple/services/shared_preference_services.dart';
-import 'package:kutilangExmaple/utils/preferences.dart';
+import 'package:kutilangExample/modules/account/services/user_services.dart';
+import 'package:kutilangExample/services/apps_routes.dart';
+// import 'package:kutilangExample/services/getIt.dart';
+import 'package:kutilangExample/services/navigation.dart';
+import 'package:kutilangExample/services/shared_preference_services.dart';
 
-import '../../services/network/dio_rest_services.dart';
+import '../../services/network/rest_services.dart';
+import '../../utils/config.dart';
 
 part 'authentication_bloc.g.dart';
 
@@ -143,9 +143,8 @@ abstract class _AuthenticationStore with Store {
 
     try {
       var body = jsonEncode({"username": username, "password": password, "rememberMe": rememberMe});
-      FLog.info(text: 'Auth Body-: '+body);
-      var response = await getIt<RestDioServices>()
-          .post(UserServices.API_USERS_AUTHENTICATE, body);
+      FLog.info(text: 'Auth Body: '+body);
+      var response = await RestServices.post(UserServices.API_USERS_AUTHENTICATE, body);
       
       FLog.info(text:response);
       
@@ -153,7 +152,7 @@ abstract class _AuthenticationStore with Store {
         loggedIn = true;
         loading = false;
         success = true;
-        getIt<NavigationServices>().navigateTo(AppsRoutes.home);
+        NavigationServices.navigateTo(AppsRoutes.home);
 
       }else if (response.toString().contains("Unauthorized")){
         showError = true;
@@ -169,7 +168,7 @@ abstract class _AuthenticationStore with Store {
       showError = true;
       errorMessage =  "Something went wrong, please check your network and try again";
       loading = false;
-      print(e.toString());
+      FLog.info(text:e.toString());
     }
 
   }
@@ -177,7 +176,7 @@ abstract class _AuthenticationStore with Store {
   bool _saveToken(var token) {
     String _token = json.decode(token)["id_token"];
     if (_token != null) {
-      getIt<SharedPrefServices>().saveAuthToken(_token);
+      SharedPrefServices.saveAuthToken(_token);
       return true;
     } else return false;
   }
@@ -188,7 +187,7 @@ abstract class _AuthenticationStore with Store {
   @action
   Future logout() async {
     SharedPreferences.getInstance().then((preference) {
-      preference.setBool(Preferences.is_logged_in, false);
+      preference.setBool(IS_LOGGED_IN, false);
     });
     loading = true;
   }

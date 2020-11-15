@@ -1,14 +1,8 @@
 
-import 'package:kutilangExmaple/models/module.dart';
-import 'package:kutilangExmaple/services/apps_routes.dart';
-import 'package:kutilangExmaple/services/navigation.dart';
-import 'package:kutilangExmaple/services/network/dio_rest_services.dart';
-import 'package:kutilangExmaple/services/shared_preference_services.dart';
-import 'package:kutilangExmaple/themes/theme_services.dart';
-import 'package:kutilangExmaple/services/getIt.dart';
-import 'package:kutilangExmaple/utils/routes.dart';
+import 'package:kutilangExample/models/module.dart';
+import 'package:kutilangExample/services/apps_routes.dart';
+import '../utils/routes.dart';
 import 'account/services/user_routes.dart';
-import 'account/services/user_services.dart';
 
 class MainModule implements Module{
   @override
@@ -25,11 +19,7 @@ class MainModule implements Module{
 
   @override
   services(){
-    getIt.registerFactory<NavigationServices>(() => NavigationServices());
-    getIt.registerFactory<SharedPrefServices>(() => SharedPrefServices());
-    getIt.registerFactory<ThemeServices>(() => ThemeServices());
-    getIt.registerFactory<RestDioServices>(() => RestDioServices());
-    getIt.registerFactory<UserServices>(() => UserServices());
+
   }
 
   @override
@@ -41,8 +31,8 @@ class MainModule implements Module{
 
   @override
   void routes() {
-    getIt<Routes>().addRoutes(AppsRoutes.routes);
-    getIt<Routes>().addRoutes(UserRoutes.routes);
+    AppRoutes.addRoutes(AppsRoutes.routes);
+    AppRoutes.addRoutes(UserRoutes.routes);
   }
 
 }

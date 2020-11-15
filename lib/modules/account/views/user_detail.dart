@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:kutilangExmaple/widgets/appbar_widget.dart';
+import 'package:kutilangExample/widgets/appbar_widget.dart';
 import '../bloc/user_bloc.dart';
 
 class UserDetail extends StatefulWidget {
@@ -38,7 +38,7 @@ class _UserDetailState extends State<UserDetail> {
 
   userDetail(BuildContext context) {
 
-    //print(_userBloc.itemDetail.email);
+    //FLog.info(text:_userBloc.itemDetail.email);
     return Observer(
           key: Key('userdetail'),
           builder: (context) {

@@ -1,7 +1,7 @@
+import 'package:f_logs/f_logs.dart';
 import 'package:flutter/material.dart';
-import 'package:kutilangExmaple/services/getIt.dart';
-import 'package:kutilangExmaple/services/navigation.dart';
-import 'package:kutilangExmaple/themes/theme_services.dart';
+import 'package:kutilangExample/services/navigation.dart';
+import 'package:kutilangExample/themes/theme_services.dart';
 import 'package:mobx/mobx.dart';
 
 part 'app_bloc.g.dart';
@@ -37,17 +37,17 @@ abstract class _AppStore with Store {
 
   @action
   switchToDark(){
-     print('dark');
+     FLog.info(text:'dark');
     
-    theme = getIt<ThemeServices>().darkTheme();
+    theme = ThemeServices.darkTheme();
     isLightTheme = false;
   }
 
   @action
   switchToLight(){
-    print('light');
+    FLog.info(text:'light');
     
-    theme = getIt<ThemeServices>().lightTheme();
+    theme = ThemeServices.lightTheme();
     isLightTheme = true;
   }
 
@@ -58,7 +58,7 @@ abstract class _AppStore with Store {
 
   @action
   goTo(String route) {
-    getIt<NavigationServices>().navigateTo(route);
+    NavigationServices.navigateTo(route);
   }
 
 }

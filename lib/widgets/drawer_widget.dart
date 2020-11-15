@@ -1,7 +1,8 @@
+import 'package:f_logs/f_logs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:kutilangExmaple/modules/account/bloc/user_bloc.dart';
-import 'package:kutilangExmaple/modules/account/services/user_routes.dart';
+import 'package:kutilangExample/modules/account/bloc/user_bloc.dart';
+import 'package:kutilangExample/modules/account/services/user_routes.dart';
 
 class CommonDrawer extends StatefulWidget {
   @override
@@ -22,7 +23,7 @@ class _CommonDrawerState extends State<CommonDrawer> {
       _firstName = _userBloc.userProfile.firstName;
       _email = _userBloc.userProfile.email;
     }catch(e){
-      print(e.toString());
+      FLog.info(text:e.toString());
     }
     return Observer(key: Key('drawer'),
           builder: (context) { return Drawer(

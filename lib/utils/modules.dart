@@ -1,11 +1,11 @@
-import 'package:kutilangExmaple/models/module.dart';
+import 'package:kutilangExample/models/module.dart';
 
 class Modules {
-   var _pages  = List<Page>();
+  static var _pages  = List<Page>();
 
-  addPages(Page newPages){
+  static addPages(Page newPages){
     _pages.add(newPages);
   }
 
-  List<Page> get pages => _pages;
+  static List<Page> get pages => _pages;
 }

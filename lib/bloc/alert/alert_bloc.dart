@@ -1,6 +1,5 @@
-
-import 'package:kutilangExmaple/services/getIt.dart';
-import 'package:kutilangExmaple/services/navigation.dart';
+import 'package:f_logs/f_logs.dart';
+import 'package:kutilangExample/services/navigation.dart';
 import 'package:mobx/mobx.dart';
 
 part 'alert_bloc.g.dart';
@@ -28,16 +27,16 @@ abstract class _AlertStore with Store {
   onDialogOk(){
     isOk =true;
     isCancel=false;
-    print('Ok');
-    getIt<NavigationServices>().close();
+    FLog.info(text:'Ok');
+    NavigationServices.close();
   }
 
   @action
   onDialogCancel(){
     isOk =false;
     isCancel=true;
-    print('Cancel');
-    getIt<NavigationServices>().close();
+    FLog.info(text:'Cancel');
+    NavigationServices.close();
   }
 
   @action

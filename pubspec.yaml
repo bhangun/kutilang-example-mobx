@@ -1,4 +1,4 @@
-name: kutilangExmaple
+name: kutilangExample
 description: A new Flutter project using Kutilang JHipster Module.
 
 # The following defines the version and build number for your application.
@@ -71,9 +71,6 @@ dependencies:
   # A Flutter plugin for finding commonly used locations on the filesystem. 
   # Supports iOS, Android, Linux and MacOS. Not all methods are supported on all platforms.
   path_provider: ^1.6.24
-
-  # dependency injection
-  get_it: ^5.0.1
 
   # slidable list
   flutter_slidable: ^0.5.7

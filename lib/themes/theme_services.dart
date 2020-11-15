@@ -4,7 +4,7 @@ import 'material_theme_colors.dart';
 
 class ThemeServices {
 
- TextTheme _buildTextTheme(TextTheme base) {
+static TextTheme _buildTextTheme(TextTheme base) {
   return base.copyWith(
     headline: base.headline.copyWith(
       fontWeight: FontWeight.w500,
@@ -28,7 +28,7 @@ class ThemeServices {
 }
 
 
-ThemeData darkTheme() {
+static ThemeData darkTheme() {
   const Color primaryColor = Color(0xFF0175c2);
   const Color secondaryColor = Color(0xFF13B9FD);
   final ColorScheme colorScheme = const ColorScheme.dark().copyWith(
@@ -61,7 +61,7 @@ ThemeData darkTheme() {
   );
 }
 
-ThemeData lightTheme() {
+static ThemeData lightTheme() {
   const Color primaryColor = Color(0xFF0175c2);
   const Color secondaryColor = Color(0xFF13B9FD);
   final ColorScheme colorScheme = const ColorScheme.light().copyWith(

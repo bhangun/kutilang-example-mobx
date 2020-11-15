@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:kutilangExmaple/utils/preferences.dart';
+import 'package:kutilangExample/utils/config.dart';
 
 
 
@@ -25,13 +25,13 @@ class SharedPrefServices {
   }
 
   // General Methods: ----------------------------------------------------------
-  String get authToken => _preferences.getString(Preferences.auth_token);
+  String get authToken => _preferences.getString(AUTH_TOKEN);
 
-  saveAuthToken(String authToken) => _preferences.setString(Preferences.auth_token, authToken);
+  static saveAuthToken(String authToken) => _preferences.setString(AUTH_TOKEN, authToken);
 
-  removeAuthToken() => _preferences.remove(Preferences.auth_token);
+  static removeAuthToken() => _preferences.remove(AUTH_TOKEN);
 
-  bool get isLoggedIn => _preferences.getString(Preferences.auth_token) ?? false;
+  bool get isLoggedIn => _preferences.getString(AUTH_TOKEN) ?? false;
 
   setPrefs(String key,String value) => _preferences.setString(key, value);
 

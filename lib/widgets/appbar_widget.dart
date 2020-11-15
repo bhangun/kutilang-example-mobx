@@ -1,9 +1,10 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:kutilangExmaple/services/apps_routes.dart';
-import 'package:kutilangExmaple/utils/preferences.dart';
+import 'package:kutilangExample/services/apps_routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../utils/config.dart';
 
 
 buildAppBar(BuildContext context, String title) {
@@ -13,7 +14,7 @@ buildAppBar(BuildContext context, String title) {
         IconButton(
           onPressed: () {
             SharedPreferences.getInstance().then((preference) {
-              preference.setBool(Preferences.is_logged_in, false);
+              preference.setBool(IS_LOGGED_IN, false);
               Navigator.of(context).pushReplacementNamed(AppsRoutes.login);
             });
           },

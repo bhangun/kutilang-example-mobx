@@ -1,4 +1,4 @@
-// Copyright 2018-present the Flutter authors. All Rights Reserved.
+// 
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,16 +18,15 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 
 import 'bloc/app/app_bloc.dart';
 import 'generated/i18n.dart';
-import 'services/getIt.dart';
 import 'services/navigation.dart';
+import 'utils/config.dart';
 import 'utils/modules_registry.dart';
-import 'utils/preferences.dart';
 import 'views/splash.dart';
 import 'utils/routes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  platformInit();
+ 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -49,20 +48,20 @@ class KutilangApp extends StatelessWidget {
       key: Key('app'),
       builder: (context) {
         return MaterialApp(
+            key: _appKey,
+            title: APP_NAME,
+            theme: _appBloc.theme,
+            routes: AppRoutes.routes,
+            home: SplashScreen(),
+            navigatorKey: NavigationServices.navigatorKey,
+            debugShowCheckedModeBanner: false,
             locale: Locale(_appBloc.locale, "en"),
             localizationsDelegates: [S.delegate],
             supportedLocales: S.delegate.supportedLocales,
             localeResolutionCallback:
-            S.delegate.resolution(fallback: new Locale(Preferences.english, "en")),
-            key: _appKey,
-            debugShowCheckedModeBanner: false,
-            title: Preferences.appName,
-            theme: _appBloc.theme,
-            routes: Route.routes,
-            home: SplashScreen(),
-            navigatorKey: NavigationServices.navigatorKey
+            S.delegate.resolution(fallback: new Locale(LOCALE_ENGLISH, "en")),
         );
-        }
+      }
     );
   }
 }

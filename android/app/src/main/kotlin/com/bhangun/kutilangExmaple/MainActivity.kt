@@ -1,4 +1,4 @@
-package com.bhangun.kutilangExmaple
+package com.bhangun.kutilangExample
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,13 +1,13 @@
 
-import 'package:kutilangExmaple/bloc/alert/alert_bloc.dart';
-import 'package:kutilangExmaple/modules/account/services/user_routes.dart';
-import 'package:kutilangExmaple/modules/account/services/user_services.dart';
-import 'package:kutilangExmaple/services/navigation.dart';
+import 'package:f_logs/f_logs.dart';
+import 'package:kutilangExample/bloc/alert/alert_bloc.dart';
+import 'package:kutilangExample/modules/account/services/user_routes.dart';
+import 'package:kutilangExample/modules/account/services/user_services.dart';
+import 'package:kutilangExample/services/navigation.dart';
 import 'package:mobx/mobx.dart' as m;
 
-import 'package:kutilangExmaple/services/getIt.dart';
-import 'package:kutilangExmaple/modules/account/models/user_model.dart';
-import 'package:kutilangExmaple/utils/helper.dart';
+import 'package:kutilangExample/modules/account/models/user_model.dart';
+import 'package:kutilangExample/utils/helper.dart';
 import 'package:mobx/mobx.dart';
 
 
@@ -143,7 +143,7 @@ abstract class _UserStore with m.Store {
     isItemEmpty = false;
     itemDetail = userList[data];
     //userDetail = data;
-    print('$isItemEmpty  ????>>>${userDetail.email}');
+    FLog.info(text:'$isItemEmpty  ????>>>${userDetail.email}');
   }
 @m.observable
   int position=0;
@@ -160,34 +160,34 @@ abstract class _UserStore with m.Store {
     //if(itemDetail != null)
       //isItemEmpty = false;
 
-    getIt<NavigationServices>().navigateTo(UserRoutes.userDetail);
+    NavigationServices.navigateTo(UserRoutes.userDetail);
   }
 
   @m.action
   itemTap(User data){
-     getIt<NavigationServices>().navigateTo(UserRoutes.userDetail);
+     NavigationServices.navigateTo(UserRoutes.userDetail);
       itemDetail = data;
   }
 
 
   @m.action
   add(){
-    getIt<NavigationServices>().navigateTo(UserRoutes.userForm);
+    NavigationServices.navigateTo(UserRoutes.userForm);
   }
 
   @m.action
   save(){ 
     isModified =false;
-    getIt<UserServices>().createUser(mapping());
+    UserServices.createUser(mapping());
     //dialogDelete();
-    getIt<NavigationServices>().navigateTo(UserRoutes.userList);
+    NavigationServices.navigateTo(UserRoutes.userList);
   }
 
   @m.action
   delete(String userid){
     dialogDelete();
     //isModified =true;
-    getIt<UserServices>().deleteUser(userid);
+    UserServices.deleteUser(userid);
     getUserList();
   }
 
@@ -198,23 +198,23 @@ abstract class _UserStore with m.Store {
 
   @m.action
   Future getUserList() async{ 
-    getIt<UserServices>().users().then((data)=> userList = data); 
+    UserServices.users().then((data)=> userList = data); 
   }
 
   @m.action
   getProfile() async {
-    profile2 = await getIt<UserServices>().profileInfo();
+    profile2 = await UserServices.profileInfo();
       //setPrefs(PROFILE, profile);
 
       //userProfile = User.fromJson(json.decode(profile));
-      print('>>>>>'+userProfile.firstName);
+      FLog.info(text:'>>>>>'+userProfile.firstName);
   }
 
 
   dialogDelete([String item]){
     _alertStore.setTitleDialog('Delete');
     _alertStore.setContentDialog('This item $item would be delete');
-    print('----');
+    FLog.info(text:'----');
   }
 
    dialogUpdate([String item]){

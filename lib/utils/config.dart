@@ -1,15 +1,32 @@
+// General
+const APP_NAME ='Kutilang App';
 
-const BASE_URL = 'http://localhost:8080/';
-const ADMIN = "ROLE_ADMIN";
-const USER = "ROLE_USER";
-const TOKEN = "token";
+// Caution! use your host IP instead of LOCALHOST
+// because it not recognize on emulator
+const BASE_URL = 'http://192.168.100.129:8080/';
 const API = BASE_URL+'api/';
 
-// receiveTimeout
-const int TIMEOUT_RECEIVE = 5000;
+// Role
+const ADMIN = "ROLE_ADMIN";
+const USER = "ROLE_USER";
 
-// connectTimeout
-const int TIMEOUT_CONNECTION = 3000;
+// Authentication
+const TOKEN = "token";
+const IS_LOGGED_IN = "isLoggedIn";
+const AUTH_TOKEN = TOKEN;
+
+// Timeout
+const int TIMEOUT_RECEIVE = 5000;
+const int TIMEOUT_CONNECTION = 5000;
+
+// Locale
+const LOCALE_ENGLISH = 'en';
+const LOCALE_BAHASA= 'id';
+
+// Icon Images
+const String ICON_APP = 'assets/icons/ic_appicon.png';
+const String IMAGE_LOGIN ='assets/images/img_login.jpg';
+const String IMAGE_SPLASH = 'assets/icons/logo_jh.svg';
 
 
 //fonts
