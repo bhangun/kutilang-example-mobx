@@ -27,6 +27,7 @@ import 'utils/routes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  platformInit();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -57,7 +58,7 @@ class KutilangApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: Preferences.appName,
             theme: _appBloc.theme,
-            routes: getIt<Routes>().routes,
+            routes: Route.routes,
             home: SplashScreen(),
             navigatorKey: NavigationServices.navigatorKey
         );

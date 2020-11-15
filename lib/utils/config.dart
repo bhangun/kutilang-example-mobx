@@ -5,6 +5,12 @@ const USER = "ROLE_USER";
 const TOKEN = "token";
 const API = BASE_URL+'api/';
 
+// receiveTimeout
+const int TIMEOUT_RECEIVE = 5000;
+
+// connectTimeout
+const int TIMEOUT_CONNECTION = 3000;
+
 
 //fonts
 const String quickFont = "Quicksand";

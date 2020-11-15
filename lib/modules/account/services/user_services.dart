@@ -7,9 +7,9 @@ import 'package:kutilangExmaple/services/getIt.dart';
 import 'package:kutilangExmaple/services/navigation.dart';
 import 'package:kutilangExmaple/services/shared_preference_services.dart';
 
+import '../../../services/network/dio_rest_services.dart';
 import '../../../utils/helper.dart';
 import '../models/user_model.dart';
-import '../../../services/network/rest_http_services.dart';
 
 class UserServices {
   static const API = '/api/';
@@ -61,7 +61,7 @@ class UserServices {
       "rememberMe": _rememberMe
     });
     try {
-      getIt<RestHttpServices>()
+      getIt<RestDioServices>()
           .post(UserServices.API_USERS_AUTHENTICATE, body)
           .then((d) => _saveToken(d.toString()));
       
@@ -82,12 +82,12 @@ class UserServices {
   }
 
   Future<User> user(String id) async {
-    var response = await getIt<RestHttpServices>().fetch(API_USER + id);
+    var response = await getIt<RestDioServices>().fetch(API_USER + id);
     return User.fromJson(json.decode(response));
   }
 
   Future<List<User>> users([var page, var size, var sort]) async {
-    var data = await getIt<RestHttpServices>().fetch(API_USERS);
+    var data = await getIt<RestDioServices>().fetch(API_USERS);
     return User.listFromString(data);
   }
 
@@ -123,7 +123,7 @@ class UserServices {
   resetPasswordInit(String email) async {}
 
   profileInfo() async {
-    var data = await getIt<RestHttpServices>().fetch(API_ACCOUNT);
+    var data = await getIt<RestDioServices>().fetch(API_ACCOUNT);
     User user = User.fromJson(json.decode(data.toString()));
     return user;
   }

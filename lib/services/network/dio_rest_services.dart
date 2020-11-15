@@ -1,14 +1,15 @@
 import 'package:dio/dio.dart';
+import 'package:f_logs/f_logs.dart';
 import 'package:kutilangExmaple/services/shared_preference_services.dart';
-import 'package:kutilangExmaple/utils/endpoints.dart';
+import 'package:kutilangExmaple/utils/config.dart';
 
 
 class RestDioServices {
 
   static Dio dio = Dio()
-    ..options.baseUrl = Endpoints.baseUrl
-    ..options.connectTimeout = 5000
-    ..options.receiveTimeout = 3000
+    ..options.baseUrl = BASE_URL
+    ..options.connectTimeout = TIMEOUT_CONNECTION
+    ..options.receiveTimeout = TIMEOUT_RECEIVE
     ..options.headers = {'Content-Type': 'application/json; charset=utf-8'}
     ..interceptors.add(LogInterceptor(responseBody: true))
     ..interceptors.add(InterceptorsWrapper(onRequest: (Options options) async {
@@ -19,12 +20,11 @@ class RestDioServices {
       var token = prefs.authToken;
 
       if (token != null) {
-        print('>>>>>>>>>>>>>'+token);
-        //options.headers.putIfAbsent('Authorization', () => token);
         options.headers = {'Authorization': 'Bearer $token'};
+        options.headers.putIfAbsent('Authorization', () => token);
 
       } else {
-        print('Auth token is null');
+        FLog.debug(text: 'Auth token is null');
       }
     }));
 
@@ -35,7 +35,7 @@ class RestDioServices {
       final Response response = await dio.get(uri);
       return response.data;
     } catch (e) {
-      print(e.toString());
+      FLog.error(text: e.toString());
       throw e;
     }
   }
@@ -46,6 +46,7 @@ class RestDioServices {
       final Response response = await dio.post(uri, data: data);
       return response.data;
     } catch (e) {
+      FLog.error(text: e.toString());
       throw e;
     }
   }
@@ -56,6 +57,7 @@ class RestDioServices {
       final Response response = await dio.delete(uri, data: data);
       return response.data;
     } catch (e) {
+      FLog.error(text: e.toString());
       throw e;
     }
   }
@@ -66,6 +68,7 @@ class RestDioServices {
       final Response response = await dio.put(uri, data: data);
       return response.data;
     } catch (e) {
+      FLog.error(text: e.toString());
       throw e;
     }
   }

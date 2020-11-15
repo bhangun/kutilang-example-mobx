@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:kutilangExmaple/modules/register_modules.dart';
 import 'package:kutilangExmaple/services/getIt.dart';
-import 'package:kutilangExmaple/utils/providers';
+// import 'package:kutilangExmaple/utils/providers';
 import 'package:kutilangExmaple/utils/routes.dart';
 
 import 'modules.dart';
@@ -17,7 +17,7 @@ class ModulesRegistry {
    // GetIt.I.registerSingleton(AppModel());
     getIt.registerSingleton(Modules());
     getIt.registerSingleton(Routes());
-    getIt.registerSingleton(AppProviders());
+    // getIt.registerSingleton(AppProviders());
     _registry();
   }
 

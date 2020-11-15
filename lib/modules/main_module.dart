@@ -2,8 +2,7 @@
 import 'package:kutilangExmaple/models/module.dart';
 import 'package:kutilangExmaple/services/apps_routes.dart';
 import 'package:kutilangExmaple/services/navigation.dart';
-import 'package:kutilangExmaple/services/network/rest_dio_services.dart';
-import 'package:kutilangExmaple/services/network/rest_http_services.dart';
+import 'package:kutilangExmaple/services/network/dio_rest_services.dart';
 import 'package:kutilangExmaple/services/shared_preference_services.dart';
 import 'package:kutilangExmaple/themes/theme_services.dart';
 import 'package:kutilangExmaple/services/getIt.dart';
@@ -30,7 +29,6 @@ class MainModule implements Module{
     getIt.registerFactory<SharedPrefServices>(() => SharedPrefServices());
     getIt.registerFactory<ThemeServices>(() => ThemeServices());
     getIt.registerFactory<RestDioServices>(() => RestDioServices());
-    getIt.registerFactory<RestHttpServices>(() => RestHttpServices());
     getIt.registerFactory<UserServices>(() => UserServices());
   }
 

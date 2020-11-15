@@ -1,4 +1,4 @@
-import 'package:provider/provider.dart';
+/* import 'package:provider/provider.dart';
 
 class AppProviders {
 
@@ -9,4 +9,4 @@ class AppProviders {
   }
 
   List<SingleChildCloneableWidget> get providers => _providers;
-}
+} */

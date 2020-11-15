@@ -25,11 +25,14 @@ dependencies:
   # The following decoding jwt
   corsac_jwt: ^0.3.0
 
+  # MobX is a library for reactively managing the state of your applications. Use the power of
+  # observables, actions, and reactions to supercharge your Dart and Flutter apps.
+  mobx: ^1.2.1+4
+  flutter_mobx: ^1.1.0+2
+  mobx_codegen: ^1.1.2
+
   # The following adds the shared pref as a dependency in your application
   shared_preferences: ^0.5.12+4
-
-  # A composable, Future-based library for making HTTP requests.
-  http: ^0.12.2
 
   # This package provides internationalization and localization facilities, including message translation,
   # plurals and genders, date/number formatting and parsing, and bidirectional text
@@ -44,19 +47,7 @@ dependencies:
   # Flogs, a powerful logging framework
   f_logs: ^1.2.2
 
-  # dependency injection
-  get_it: ^5.0.1
-
-  # slidable list
-  flutter_slidable: ^0.5.7
-
-  # MobX is a library for reactively managing the state of your applications. Use the power of
-  # observables, actions, and reactions to supercharge your Dart and Flutter apps.
-  mobx: ^1.2.1+4
-  flutter_mobx: ^1.1.0+2
-  mobx_codegen: ^1.1.2
-
-  # We are able to compare different instances og object
+  # We are able to compare different instances of object
   equatable: ^1.2.5
 
   # An helper to easily exposes a value using InheritedWidget without having to write one.
@@ -74,8 +65,18 @@ dependencies:
   # A flexible widget for user notification.
   flushbar: ^1.10.4
   
-  # SVG
+  # Plugin for handling SVG
   flutter_svg: ^0.19.1
+  
+  # A Flutter plugin for finding commonly used locations on the filesystem. 
+  # Supports iOS, Android, Linux and MacOS. Not all methods are supported on all platforms.
+  path_provider: ^1.6.24
+
+  # dependency injection
+  get_it: ^5.0.1
+
+  # slidable list
+  flutter_slidable: ^0.5.7
 
 dev_dependencies:
   flutter_test:
@@ -84,11 +85,6 @@ dev_dependencies:
     sdk: flutter
   test: any
   build_runner: ^1.10.4
-
-flutter_icons:
-  image_path: "assets/icons/ic_launcher.png"
-  android: true
-  ios: true
 
 
 # For information on the generic Dart part of this file, see the
@@ -106,6 +102,7 @@ flutter:
   assets:
   - assets/images/
   - assets/icons/
+  - assets/fonts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
@@ -125,6 +122,6 @@ flutter:
     - asset: assets/fonts/Product-Sans-Italic.ttf
       style: italic
     # - asset: assets/fonts/Product-Sans-Bold.ttf
-      weight: 700
+    #  weight: 700
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages

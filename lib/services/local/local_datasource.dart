@@ -1,7 +1,7 @@
-import 'package:kutilangExmaple/utils/db_constants.dart';
+import 'package:kutilangExmaple/services/local/local_db_constants.dart';
 import 'package:sembast/sembast.dart';
 import '../../models/app_data.dart';
-import 'app_database.dart';
+import 'local_database.dart';
 
 
 class AppDataSource {

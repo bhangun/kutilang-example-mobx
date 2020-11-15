@@ -7,9 +7,10 @@ import 'package:kutilangExmaple/modules/account/services/user_services.dart';
 import 'package:kutilangExmaple/services/apps_routes.dart';
 import 'package:kutilangExmaple/services/getIt.dart';
 import 'package:kutilangExmaple/services/navigation.dart';
-import 'package:kutilangExmaple/services/network/rest_http_services.dart';
 import 'package:kutilangExmaple/services/shared_preference_services.dart';
 import 'package:kutilangExmaple/utils/preferences.dart';
+
+import '../../services/network/dio_rest_services.dart';
 
 part 'authentication_bloc.g.dart';
 
@@ -143,7 +144,7 @@ abstract class _AuthenticationStore with Store {
     try {
       var body = jsonEncode({"username": username, "password": password, "rememberMe": rememberMe});
       FLog.info(text: 'Auth Body-: '+body);
-      var response = await getIt<RestHttpServices>()
+      var response = await getIt<RestDioServices>()
           .post(UserServices.API_USERS_AUTHENTICATE, body);
       
       FLog.info(text:response);
