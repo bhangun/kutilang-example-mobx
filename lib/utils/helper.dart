@@ -1,17 +1,16 @@
 import 'dart:async';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:corsac_jwt/corsac_jwt.dart';
+import 'package:kutilangExample/services/local/local_storage.dart';
 import 'config.dart';
 
 //
 setPrefs(String key,String value) {
-  SharedPreferences.getInstance().then((p)=>p.setString(key, value));
+  AppStorage.put(key, value);
 }
 
 //
 Future<String> prefs(String key) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  return prefs.getString(key);
+  return AppStorage.fetch(key);
 }
 
 Future<JWT> jwt() async {

@@ -38,7 +38,7 @@ static final _storage = FlutterSecureStorage();
   }
 
   // Delete value 
-  static delete(String key) async{
+  static void delete(String key) async{
     await _storage.delete(key: key);
   }
 

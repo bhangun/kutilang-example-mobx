@@ -1,14 +1,9 @@
-import 'dart:convert';
 import 'package:f_logs/f_logs.dart';
 import 'package:mobx/mobx.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:kutilangExample/modules/account/services/user_services.dart';
 import 'package:kutilangExample/services/apps_routes.dart';
-// import 'package:kutilangExample/services/getIt.dart';
 import 'package:kutilangExample/services/navigation.dart';
-
-import '../../utils/config.dart';
 
 part 'authentication_bloc.g.dart';
 
@@ -176,5 +171,8 @@ abstract class _AuthenticationStore with Store {
   @action
   Future logout() async {
     loading = true;
+    await UserServices.logout();
+    loading = false;
+    NavigationServices.navigateTo(AppsRoutes.login);
   }
 }

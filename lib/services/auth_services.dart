@@ -3,16 +3,13 @@ import 'dart:convert';
 
 import 'package:f_logs/f_logs.dart';
 
-import '../../../services/local/local_storage.dart';
-import '../../../services/apps_routes.dart';
-import '../../../services/navigation.dart';
-import '../../../services/network/rest_services.dart';
-import '../../../utils/config.dart';
-import '../../../utils/helper.dart';
-import '../models/user_model.dart';
+import '../modules/account/models/user_model.dart';
+import '../utils/config.dart';
+import '../utils/helper.dart';
+import 'local/local_storage.dart';
+import 'network/rest_services.dart';
 
-class UserServices {
-  // static const API = '/api/';
+class AuthServices {
 
   static const API_ACCOUNT = 'account';
 
@@ -45,14 +42,6 @@ class UserServices {
 // GET getAuthorities
   static const API_USERS_AUTHORITIES = "users/authorities";
 
-// GET getAllUsers
-// POST createUser
-// PUT updateUser
-  static const API_USERS = "users";
-
-// GET getUser
-// DELETE deleteUser
-  static const API_USER = "users/";
 
   static Future<bool> login(String _username, String _password, [bool _rememberMe = false]) async {
     var body = jsonEncode({
@@ -94,36 +83,14 @@ class UserServices {
       return false;
   }
 
-  Future<User> user(String id) async {
-    var response = await RestServices.fetch(API_USER + id);
-    return User.fromJson(json.decode(response));
-  }
-
-  static Future<List<User>> users([var page, var size, var sort]) async {
-    var data = await RestServices.fetch(API_USERS);
-    return User.listFromString(data);
-  }
-
-  //
-  static createUser(User user) async {
-    //return await restPost(API_USER, user.toJson().toString(), true);
-  }
-
-  //
-  static updateUser(User user) async {
-    //return await restPut(API_USER, user.toJson().toString(), true);
-  }
-
-  //
-  static deleteUser(String userid) async {
-    //return await restDelete(API_USER + userid);
-  }
 
   static changePassword(String currentPassword, String newPassword) async {
     //var body = '{"currentPassword": "$currentPassword","newPassword": "$newPassword"}';
   }
 
-  static authorities() {}
+  static authorities() {
+    
+  }
 
   static activate() async {
     // ?key=
@@ -141,7 +108,9 @@ class UserServices {
     return user;
   }
 
-  static register() {}
+  static register() {
+    
+  }
 
   List<User> usersData(String data) {
     final parsed = json.decode(data).cast<Map<String, dynamic>>();

@@ -34,9 +34,6 @@ dependencies:
   # A Flutter plugin to store data in secure storage
   flutter_secure_storage: ^3.3.5
 
-  # The following adds the shared pref as a dependency in your application
-  shared_preferences: ^0.5.12+4
-
   # This package provides internationalization and localization facilities, including message translation,
   # plurals and genders, date/number formatting and parsing, and bidirectional text
   intl: ^0.16.1
