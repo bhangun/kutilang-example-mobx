@@ -1,7 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:f_logs/f_logs.dart';
+
+import '../../../services/local/local_storage.dart';
+import '../../../services/apps_routes.dart';
+import '../../../services/navigation.dart';
 import '../../../services/network/rest_services.dart';
+import '../../../utils/config.dart';
 import '../../../utils/helper.dart';
 import '../models/user_model.dart';
 
@@ -47,33 +53,42 @@ class UserServices {
 // GET getUser
 // DELETE deleteUser
   static const API_USER = "users/";
-/* 
-  login(String _username, String _password, [bool _rememberMe = false]) {
+
+  static Future<bool> login(String _username, String _password, [bool _rememberMe = false]) async {
     var body = jsonEncode({
       "username": _username,
       "password": _password,
       "rememberMe": _rememberMe
     });
+    bool result = false;
     try {
       RestServices
-          .post(UserServices.API_USERS_AUTHENTICATE, body)
-          .then((d) => _saveToken(d.toString()));
-      
+          .post(API_USERS_AUTHENTICATE, body)
+          .then((d) => _saveToken(d), 
+          onError: (e)=>{
+            print(e.toString())
+          });
+      if(await AppStorage.fetch(TOKEN) !=null) {
+        result =true;
+        FLog.info(text: "Token saved!"+result.toString());
+      }
     } catch (e) {
       FLog.error(text:e.toString());
     }
+    return result;
   }
 
-  bool _saveToken(var token) {
-    String _token = json.decode(token)["id_token"];
-    FLog.info(text: _token);
+  static bool _saveToken(token) {
+    String _token = token['id_token'];
     if (_token != null) {
-      SharedPrefServices.saveAuthToken(_token);
-      NavigationServices.navigateTo(AppsRoutes.home);
+      FLog.info(text: "try save token");
+      AppStorage.put(TOKEN, _token);
+      FLog.info(text: "token saved!");
+      
       return true;
     } else
       return false;
-  } */
+  }
 
   Future<User> user(String id) async {
     var response = await RestServices.fetch(API_USER + id);

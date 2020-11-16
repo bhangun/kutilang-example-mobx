@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_driver/driver_extension.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../lib/main.dart';
-import '../lib/views/login.dart';
-import '../lib/widgets/rounded_button_widget.dart';
+import '../../lib/main.dart';
+import '../../lib/views/login.dart';
+import '../../lib/widgets/rounded_button_widget.dart';
 
 void main() {
   // This line enables the extension.

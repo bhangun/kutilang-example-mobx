@@ -6,10 +6,13 @@ import 'package:kutilangExample/utils/config.dart';
 
 
 class SharedPrefServices {
+
+  static SharedPreferences _preferences;
+  
   // singleton object
   static final SharedPrefServices _singleton = SharedPrefServices._();
 
-  static SharedPreferences _preferences;
+  
   // A private constructor. Allows us to create instances of SharedPreferenceHelper
   // only from within the SharedPreferenceHelper class itself.
   SharedPrefServices._();

@@ -7,9 +7,7 @@ import 'package:kutilangExample/modules/account/services/user_services.dart';
 import 'package:kutilangExample/services/apps_routes.dart';
 // import 'package:kutilangExample/services/getIt.dart';
 import 'package:kutilangExample/services/navigation.dart';
-import 'package:kutilangExample/services/shared_preference_services.dart';
 
-import '../../services/network/rest_services.dart';
 import '../../utils/config.dart';
 
 part 'authentication_bloc.g.dart';
@@ -142,16 +140,13 @@ abstract class _AuthenticationStore with Store {
     loggedIn = false;
 
     try {
-      var body = jsonEncode({"username": username, "password": password, "rememberMe": rememberMe});
-      FLog.info(text: 'Auth Body: '+body);
-      var response = await RestServices.post(UserServices.API_USERS_AUTHENTICATE, body);
-      
-      FLog.info(text:response);
-      
-      if (_saveToken(response)){
+      bool response =  await UserServices.login(username, password, rememberMe);
+      if (response){
+        
         loggedIn = true;
         loading = false;
         success = true;
+
         NavigationServices.navigateTo(AppsRoutes.home);
 
       }else if (response.toString().contains("Unauthorized")){
@@ -173,22 +168,13 @@ abstract class _AuthenticationStore with Store {
 
   }
 
-  bool _saveToken(var token) {
-    String _token = json.decode(token)["id_token"];
-    if (_token != null) {
-      SharedPrefServices.saveAuthToken(_token);
-      return true;
-    } else return false;
-  }
   @action
   Future forgotPassword() async {
     loading = true;
   }
+  
   @action
   Future logout() async {
-    SharedPreferences.getInstance().then((preference) {
-      preference.setBool(IS_LOGGED_IN, false);
-    });
     loading = true;
   }
 }
