@@ -1,7 +1,8 @@
 import 'package:f_logs/f_logs.dart';
+import 'package:kutilangExample/services/auth_services.dart';
+
 import 'package:mobx/mobx.dart';
 
-import 'package:kutilangExample/modules/account/services/user_services.dart';
 import 'package:kutilangExample/services/apps_routes.dart';
 import 'package:kutilangExample/services/navigation.dart';
 
@@ -135,7 +136,7 @@ abstract class _AuthenticationStore with Store {
     loggedIn = false;
 
     try {
-      bool response =  await UserServices.login(username, password, rememberMe);
+      bool response =  await AuthServices.login(username, password, rememberMe);
       if (response){
         
         loggedIn = true;
@@ -171,7 +172,7 @@ abstract class _AuthenticationStore with Store {
   @action
   Future logout() async {
     loading = true;
-    await UserServices.logout();
+    await AuthServices.logout();
     loading = false;
     NavigationServices.navigateTo(AppsRoutes.login);
   }

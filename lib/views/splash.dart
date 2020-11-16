@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kutilangExample/services/apps_routes.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
+import 'package:kutilangExample/services/local/local_storage.dart';
 
 import '../utils/config.dart';
 
@@ -31,10 +31,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   navigate() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-
-    if (preferences.getBool(IS_LOGGED_IN) ?? false) {
-      Navigator.of(context).pushReplacementNamed(AppsRoutes.login);
+    
+    if (AppStorage.fetch(AUTH_TOKEN) !=null ) {
+      Navigator.of(context).pushReplacementNamed(AppsRoutes.home);
     } else {
       Navigator.of(context).pushReplacementNamed(AppsRoutes.login);
     }

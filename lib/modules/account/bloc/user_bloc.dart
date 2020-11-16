@@ -3,6 +3,7 @@ import 'package:f_logs/f_logs.dart';
 import 'package:kutilangExample/bloc/alert/alert_bloc.dart';
 import 'package:kutilangExample/modules/account/services/user_routes.dart';
 import 'package:kutilangExample/modules/account/services/user_services.dart';
+import 'package:kutilangExample/services/auth_services.dart';
 import 'package:kutilangExample/services/navigation.dart';
 import 'package:mobx/mobx.dart' as m;
 
@@ -203,7 +204,7 @@ abstract class _UserStore with m.Store {
 
   @m.action
   getProfile() async {
-    profile2 = await UserServices.profileInfo();
+    profile2 = await AuthServices.profileInfo();
       //setPrefs(PROFILE, profile);
 
       //userProfile = User.fromJson(json.decode(profile));
