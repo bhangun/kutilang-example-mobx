@@ -1,21 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:kutilangExample/services/apps_routes.dart';
 
-import '../services/apps_routes.dart';
-import '../services/navigation.dart';
+import '../bloc/authentication/authentication_bloc.dart';
 
-buildAppBar(BuildContext context, String title) {
-  return AppBar(
+class KutAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final String title;
+  const KutAppBar({Key key,  this.title}) : super(key: key);
+  
+  @override
+  Widget build(BuildContext context) {
+     final AuthenticationStore _authBloc = AuthenticationStore();
+  void _logout(){
+    _authBloc.logout();
+  }
+    return PreferredSize(
+  preferredSize: Size.fromHeight(100.0),
+  child: AppBar(
     title: Text(title),
     actions: <Widget>[
       IconButton(
-        onPressed: () {
-          NavigationServices.navigateTo(AppsRoutes.home);
-        },
+        onPressed: _logout,
         icon: Icon(
           Icons.power_settings_new,
         ),
       )
     ],
-  );
+  ));
+  }
+
+  @override
+  Size get preferredSize => Size.fromHeight(100.0);
 }

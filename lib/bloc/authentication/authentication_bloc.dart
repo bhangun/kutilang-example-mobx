@@ -138,12 +138,11 @@ abstract class _AuthenticationStore with Store {
     try {
       bool response =  await AuthServices.login(username, password, rememberMe);
       if (response){
-        
+        FLog.info(text: "Success login!");
+        NavigationServices.navigateTo(AppsRoutes.home);
         loggedIn = true;
         loading = false;
         success = true;
-
-        NavigationServices.navigateTo(AppsRoutes.home);
 
       }else if (response.toString().contains("Unauthorized")){
         showError = true;
@@ -173,7 +172,7 @@ abstract class _AuthenticationStore with Store {
   Future logout() async {
     loading = true;
     await AuthServices.logout();
-    loading = false;
     NavigationServices.navigateTo(AppsRoutes.login);
+    loading = false;
   }
 }

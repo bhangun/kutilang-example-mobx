@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:kutilangExample/bloc/app/app_bloc.dart';
 import 'package:kutilangExample/bloc/authentication/authentication_bloc.dart';
-import 'package:kutilangExample/modules/account/bloc/user_bloc.dart';
 
 import '../widgets/rounded_button_widget.dart';
 
@@ -30,11 +29,13 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _homeKey,
-      appBar: buildAppBar(context,'Home'),
+      appBar: KutAppBar(title:'Home'),
       body: _buildBody(),
       drawer:  
              CommonDrawer(),

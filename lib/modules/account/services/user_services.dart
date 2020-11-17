@@ -5,13 +5,13 @@ import '../../../services/network/rest_services.dart';
 import '../models/user_model.dart';
 
 class UserServices {
-// GET getAllUsers
-// POST createUser
-// PUT updateUser
+  // GET getAllUsers
+  // POST createUser
+  // PUT updateUser
   static const API_USERS = "users";
 
-// GET getUser
-// DELETE deleteUser
+  // GET getUser
+  // DELETE deleteUser
   static const API_USER = "users/";
 
 
@@ -27,17 +27,17 @@ class UserServices {
 
   //
   static createUser(User user) async {
-    //return await restPost(API_USER, user.toJson().toString(), true);
+    await RestServices.post(API_USER, user);
   }
 
   //
   static updateUser(User user) async {
-    //return await restPut(API_USER, user.toJson().toString(), true);
+    await RestServices.put(API_USER, user);
   }
 
   //
-  static deleteUser(String userid) async {
-    //return await restDelete(API_USER + userid);
+  static deleteUser(String userID) async {
+    await RestServices.delete(API_USER, userID);
   }
 
 }

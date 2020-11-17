@@ -15,7 +15,7 @@ class _UserDetailState extends State<UserDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: buildAppBar(context, 'User Detail >>${_userBloc.isItemEmpty}'),//${_userBloc.itemDetail.firstName}'),
+        appBar: KutAppBar(title:'User Detail >>${_userBloc.isItemEmpty}'),//${_userBloc.itemDetail.firstName}'),
         body:  /* Observer(
           name: 'userdetail',
           builder: (context) {

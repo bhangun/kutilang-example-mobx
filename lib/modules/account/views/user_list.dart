@@ -34,7 +34,7 @@ class _UserListState extends State<UserList> {
             return Scaffold(
                     key: _listKey,
                         // cannot be used using this form $_userBloc.totalUser
-                        appBar: buildAppBar(context, 'User List ( ${_userBloc.totalUser} )'),
+                        appBar: KutAppBar(title: 'User List ( ${_userBloc.totalUser} )'),
                         body: _buildBody(context),
                         floatingActionButton: FloatingActionButton(
                           onPressed: _userBloc.add,

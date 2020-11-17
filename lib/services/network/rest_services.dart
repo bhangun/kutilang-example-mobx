@@ -22,7 +22,7 @@ class RestServices {
       }
     }, onError: (DioError error) async {
      // FLog.error(text: error.toString());
-     // FLog.info(text: DioErrorUtil.handleError(error));
+      FLog.info(text: DioErrorUtil.handleError(error));
       // Do something with response error
       if (error.response?.statusCode == 403) {
         // requestLock.lock()-> If no token, request token firstly and lock this interceptor
@@ -37,7 +37,7 @@ class RestServices {
   static Future<dynamic> fetch(String uri) async {
     try {
       final Response response = await _dio.get(uri);
-      FLog.info(text: response.toString());
+      // FLog.info(text: response.toString());
       return response.data;
     } catch (e) {
       FLog.error(text: e.toString());
@@ -47,21 +47,21 @@ class RestServices {
 
   // Post:----------------------------------------------------------------------
   static Future<dynamic> post(String uri, dynamic data) async {
-    try {
+    // try {
       final Response response = await _dio.post(uri, data: data);
     //  FLog.info(text: uri + response.data);
       return response.data;
-    } catch (e) {
-    //  FLog.error(text: e.toString());
-      // throw e;
-    }
+   /*  } catch (e) {
+      FLog.error(text: e.toString());
+      throw e;
+    } */
     
   }
 
   // Post:----------------------------------------------------------------------
-  static Future<dynamic> delete(String uri, dynamic data) async {
+  static Future<dynamic> delete(String uri, dynamic id) async {
     try {
-      final Response response = await _dio.delete(uri, data: data);
+      final Response response = await _dio.delete(uri, data: id);
       return response.data;
     } catch (e) {
       FLog.error(text: e.toString());
